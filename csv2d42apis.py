@@ -31,32 +31,32 @@ DEBUG = True                                                                # Tr
 
 
 def post(params):
-    data = urllib.urlencode(params)
+    data = urllib.parse.urlencode(params)
     headers = {
         'Authorization': 'Basic ' + base64.b64encode(D42_USERNAME + ':' + D42_PASSWORD),
         'Content-Type': 'application/x-www-form-urlencoded'}
-    req = urllib2.Request(D42_API_URL, data, headers)
+    req = urllib.request.Request(D42_API_URL, data, headers)
     if DEBUG:
-        print ('req.get_full_url()')
+        print(req.get_full_url())
     if DEBUG:
-        print ('req.headers')
+        print(req.headers)
     if DEBUG:
-        print ('req.data')
+        print(req.data)
     if API_METHOD == 'put':
         req.get_method = lambda: 'PUT'
     try:
-        urllib2.urlopen(req)
+        urllib.request.urlopen(req)
         return True, ''
-    except urllib2.HTTPError, httperror:
+    except urllib.error.HTTPError as httperror:
         error_response = httperror.read()
         if DEBUG:
-            print httperror.code, error_response
+            print(httperror.code, error_response)
         return False, error_response
 
 
 def to_ascii(string):  # not used in example, but provided incase you would need to convert certain values to ascii
     """remove non-ascii characters"""
-    if isinstance(string, basestring):
+    if isinstance(string, str):
         return string.encode('ascii', 'ignore')
     else:
         return str(string)
@@ -75,7 +75,7 @@ def read_csv_and_call_api_function(filename):
     added = []
     with open(filename, 'rb') as csvfile:
         readline = csv.reader(csvfile)
-        header_row = readline.next()
+        header_row = next(readline)
         for i in readline:
             if i:
                 try:
@@ -85,10 +85,10 @@ def read_csv_and_call_api_function(filename):
                         added.append(i)
                     else:
                         notadded.append(i + [' ', msg])
-                except Exception, err:
+                except Exception as err:
                     notadded.append(i + [str(err), ])
-    print 'notadded %s' % notadded
-    print 'added %s' % added
+    print('notadded %s' % notadded)
+    print('added %s' % added)
 
 
 read_csv_and_call_api_function(CSV_FILE_NAME)
