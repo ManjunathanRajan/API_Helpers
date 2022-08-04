@@ -37,7 +37,7 @@ def post(params):
         'Content-Type': 'application/x-www-form-urlencoded'}
     req = urllib2.Request(D42_API_URL, data, headers)
     if DEBUG:
-        print '---REQUEST---', req.get_full_url()
+        print req.get_full_url()
     if DEBUG:
         print req.headers
     if DEBUG:
