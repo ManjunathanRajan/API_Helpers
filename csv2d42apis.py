@@ -14,7 +14,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # step 2: Change lines 26-31
 # step 3: Execute the script
 ############################################################################################
-import urllib2
+##import urllib2
 import urllib
 import base64
 import csv
