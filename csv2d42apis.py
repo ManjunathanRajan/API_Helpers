@@ -22,9 +22,9 @@ import csv
 ##### Change Following lines to match your environment #####
 ### API URLS available at http://docs.device42.com/apis/ ###
 
-D42_API_URL = 'https://your-d42-fqdn-or-ip/api/1.0/custom_fields/appcomp/'  # make sure to end in /
-D42_USERNAME = 'your-d42-username-here'
-D42_PASSWORD = 'your-d42-password-here'
+D42_API_URL = 'https://swaggerdemo.device42.com/api/1.0/custom_fields/appcomp/'  # make sure to end in /
+D42_USERNAME = 'guest'
+D42_PASSWORD = 'device42_rocks!'
 API_METHOD = 'put'                                                          # whether you are doing a put or post call.
 CSV_FILE_NAME = 'file_name.csv'                                             # name of the file with the values being uploaded
 DEBUG = True                                                                # True or False. True for detailed info per call
