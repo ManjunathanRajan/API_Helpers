@@ -18,6 +18,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import urllib
 import base64
 import csv
+import codecs
 
 ##### Change Following lines to match your environment #####
 ### API URLS available at http://docs.device42.com/apis/ ###
@@ -73,7 +74,7 @@ def changerow_to_api_args(row_values, header_row):
 def read_csv_and_call_api_function(filename):
     notadded = []
     added = []
-    with open(filename, 'rb') as csvfile:
+    with open(filename, 'r') as csvfile:
         readline = csv.reader(csvfile)
         header_row = next(readline)
         for i in readline:
